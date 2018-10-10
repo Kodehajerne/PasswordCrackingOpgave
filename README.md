@@ -1,0 +1,2 @@
+# PasswordCrackingOpgave
+Mandatory assignment
