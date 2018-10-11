@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Master Server\MasterServer.cs" />
     <Compile Include="Master.cs" />
     <Compile Include="Model\UserInfo.cs" />
     <Compile Include="Util\PasswordFileHandler.cs" />
