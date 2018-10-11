@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Slave
 {
-    class Program
+    class Service
     {
-        static void Main(string[] args)
-        {
-        }
     }
 }
