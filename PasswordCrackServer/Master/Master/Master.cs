@@ -1,13 +1,8 @@
 ﻿using Master.Master_Server;
+using Master.Model;
+using Master.Util;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Master
 {
@@ -15,7 +10,14 @@ namespace Master
     {
         static void Main(string[] args)
         {
-            MasterServer master = new MasterServer();
+            List<UserInfo> list = PasswordFileHandler.ReadPasswordFile("passwords");
+
+            foreach (var item in list)
+            {
+                Console.WriteLine(item.ToString());
+            }
+
+             MasterServer master = new MasterServer();
             master.Start();
 
             Console.ReadLine();
