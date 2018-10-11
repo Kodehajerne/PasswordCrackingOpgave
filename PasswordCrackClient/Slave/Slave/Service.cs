@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Slave
 {
@@ -31,6 +32,10 @@ namespace Slave
             string message = sr.ReadLine();
             while (message != null && message != "")
             {
+                foreach (var item in message)
+                {
+                    Console.WriteLine(item);
+                }
                 sw.WriteLine("ok");
             }
             ns.Close();

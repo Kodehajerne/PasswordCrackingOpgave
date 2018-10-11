@@ -10,14 +10,7 @@ namespace Master
     {
         static void Main(string[] args)
         {
-            List<UserInfo> list = PasswordFileHandler.ReadPasswordFile("passwords");
-
-            foreach (var item in list)
-            {
-                Console.WriteLine(item.ToString());
-            }
-
-             MasterServer master = new MasterServer();
+            MasterServer master = new MasterServer();
             master.Start();
 
             Console.ReadLine();
