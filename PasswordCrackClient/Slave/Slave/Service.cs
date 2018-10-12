@@ -7,6 +7,7 @@ using System.Net.Sockets;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Slave.Model;
+using Slave.CrackingMethods;
 using System.Xml.Serialization;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
@@ -19,12 +20,10 @@ namespace Slave
     class Service
     {
         private TcpClient connectionSocket;
-
         public Service(TcpClient connectionSocket)
         {
             // TODO: Complete member initialization
             this.connectionSocket = connectionSocket;
-            
         }
 
         internal void DoIt()
@@ -37,16 +36,10 @@ namespace Slave
             string message = sr.ReadLine();
             while (message != null && message != "")
             {
-                //Works as a normal TCP connection 
-                    //Console.WriteLine("Client: " + message);
-                    //sw.WriteLine(message);
-                    //Console.ReadLine();
-
-                //Reciec
+                //Recieve data from Master
                 Console.WriteLine("Receiving data");
                 IList<UserInfo> receivedDataString = JsonConvert.DeserializeObject<IList<UserInfo>>(message);
-                Console.WriteLine(receivedDataString);
-
+                //Showing data
                 foreach (var item in receivedDataString)
                 {
                     Console.WriteLine(item);
@@ -62,6 +55,13 @@ namespace Slave
                 foreach (var item in receivedDataString)
                 {
                     Console.WriteLine();
+                }
+
+                if (message == "Start")
+                {
+                    Cracking cracker = new Cracking();
+                    cracker.RunCracking();
+                    Console.WriteLine("Cracking is started");
                 }
 
                 Console.ReadLine();

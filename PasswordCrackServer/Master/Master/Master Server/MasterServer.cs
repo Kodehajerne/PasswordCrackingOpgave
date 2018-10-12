@@ -52,8 +52,14 @@ namespace Master.Master_Server
                 sw.WriteLine(chucnkSize);
                 string confirmChunckSize = sr.ReadLine();
                 Console.WriteLine(confirmChunckSize);
-
             }
+
+            //Start Cracking 
+            Console.WriteLine("-----------------------");
+            Console.WriteLine("Type 'Start' to crack");
+            string commandStartCrack = Console.ReadLine(); ;
+            sw.WriteLine(commandStartCrack);
+
             Console.WriteLine("No more from server. Press Enter");
             Console.ReadLine();
 
