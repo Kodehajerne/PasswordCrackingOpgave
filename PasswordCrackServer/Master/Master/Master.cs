@@ -11,7 +11,7 @@ namespace Master
         static void Main(string[] args)
         {
             MasterServer master = new MasterServer();
-            master.Start();
+            master.StartConnection();
 
             Console.ReadLine();
         }

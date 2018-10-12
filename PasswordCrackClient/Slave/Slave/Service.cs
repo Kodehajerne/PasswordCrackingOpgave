@@ -19,10 +19,6 @@ namespace Slave
     class Service
     {
         private TcpClient connectionSocket;
-        private List<UserInfo> listOfUserInfo;
-        private UserInfo userInfo;
-        private BinaryFormatter binaryFormatter = new BinaryFormatter();
-        private XmlSerializer xmlSerializer = new XmlSerializer(typeof(UserInfo));
 
         public Service(TcpClient connectionSocket)
         {
@@ -42,17 +38,14 @@ namespace Slave
             while (message != null && message != "")
             {
                 //Works as a normal TCP connection 
-                //Console.WriteLine("Client: " + message);
-                //sw.WriteLine(message);
-                //Console.ReadLine();
+                    //Console.WriteLine("Client: " + message);
+                    //sw.WriteLine(message);
+                    //Console.ReadLine();
 
+                //Reciec
                 Console.WriteLine("Receiving data");
-                List<UserInfo> receivedDataString =  (List<UserInfo>) JsonConvert.DeserializeObject(message);
+                IList<UserInfo> receivedDataString = JsonConvert.DeserializeObject<IList<UserInfo>>(message);
                 Console.WriteLine(receivedDataString);
-
-                // We split the string arrays on ":" dividing it: username : password.
-                //listOfUserInfo.Add(new UserInfo(receivedDataString.SelectToken("Username").ToString()
-                //    , receivedDataString.SelectToken("EncryptedPasswordBase64").ToString()));
 
                 foreach (var item in receivedDataString)
                 {
@@ -62,9 +55,14 @@ namespace Slave
                 //Sends back an confirmation
                 sw.WriteLine("ok");
 
-               
+                //Confirmes chunck size
+                string confirmChunckSize = sr.ReadLine();
+                sw.WriteLine($"chucnk size is set to: {confirmChunckSize}");
 
-
+                foreach (var item in receivedDataString)
+                {
+                    Console.WriteLine();
+                }
 
                 Console.ReadLine();
             }

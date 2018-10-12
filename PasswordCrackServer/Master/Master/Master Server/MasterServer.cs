@@ -16,10 +16,13 @@ namespace Master.Master_Server
 {
     class MasterServer
     {
-        public void Start()
+
+
+        public void StartConnection()
         {
             //We reads all the password and username Pairs and saves them to a list<UserInfo>
             List<UserInfo> list = PasswordFileHandler.ReadPasswordFile("passwords.txt");
+            int chucnkSize = 10000;
 
             //Creating a TcpClient
             TcpClient clientSocket = new TcpClient("10.200.120.159", 1234);
@@ -32,7 +35,6 @@ namespace Master.Master_Server
 
             for (int i = 0; i < 1; i++)
             {
-
                 ////Works as a normal tcp connection 
                 //string message = Console.ReadLine();
                 //sw.WriteLine(message); 
@@ -42,17 +44,20 @@ namespace Master.Master_Server
                 sw.WriteLine(SendList);                            
                 Console.WriteLine("Brugerlist er sendt");                
 
-
-                //Confirm message from slave)
+                //Confirm message from slaves
                 string message = sr.ReadLine();
                 Console.WriteLine(message);
+
+                //sends chunck size to slaves.
+                sw.WriteLine(chucnkSize);
+                string confirmChunckSize = sr.ReadLine();
+                Console.WriteLine(confirmChunckSize);
 
             }
             Console.WriteLine("No more from server. Press Enter");
             Console.ReadLine();
 
             ns.Close();
-            //clientSocket.Close();
         }
     }
 }
