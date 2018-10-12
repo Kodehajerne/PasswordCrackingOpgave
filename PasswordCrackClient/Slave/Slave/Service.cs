@@ -8,6 +8,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Slave.Model;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace Slave
 {
@@ -39,20 +40,20 @@ namespace Slave
             string message = sr.ReadLine();
             while (message != null && message != "")
             {
-                Console.WriteLine("Client: " + message);
-                sw.WriteLine(message);
-
-                //userInfo = (UserInfo)binaryFormatter.Deserialize(ns);
-                //list.Add(userInfo);
-
-
+                //Works as a normal TCP connection 
+                //Console.WriteLine("Client: " + message);
                 //sw.WriteLine(message);
+                //Console.ReadLine();
 
-                //foreach (var item in list)
-                //{
-                //    sw.WriteLine(item);
-                //}
-                //sw.WriteLine("ok");
+                Console.WriteLine("Receiving data");
+                var respone = JsonConvert.SerializeObject(message);
+                Console.WriteLine(respone);
+
+                //Sends back an confirmation
+                sw.WriteLine("ok");
+
+
+                Console.ReadLine();
             }
             ns.Close();
             connectionSocket.Close();

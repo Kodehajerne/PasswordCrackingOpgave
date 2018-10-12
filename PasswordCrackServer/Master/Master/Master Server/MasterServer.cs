@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Master.Util;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace Master.Master_Server
 {
@@ -21,14 +22,7 @@ namespace Master.Master_Server
             BinaryFormatter binaryFormatter = new BinaryFormatter();
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(UserInfo));
 
-            ////Take the list and turnes it into a byte[]
-            //var binFormatter = new BinaryFormatter();
-            //var mStream = new MemoryStream();
-            //binFormatter.Serialize(mStream, list);
-
-            ////This gives you the byte array.
-            //var SendListAsBytes = mStream.ToArray();
-
+           
 
             TcpClient clientSocket = new TcpClient("10.200.120.159", 1234);
             Console.WriteLine("Connection to slaves");
@@ -38,20 +32,20 @@ namespace Master.Master_Server
             StreamWriter sw = new StreamWriter(ns);
             sw.AutoFlush = true;
 
-            for (int i = 0; i < list.Count; i++)
+            for (int i = 0; i < 1; i++)
             {
-                foreach (var item in list)
-                {
-                    //binaryFormatter.Serialize(ns, "jonas");
-                    string message = Console.ReadLine();
-                    //sw.WriteLine("Jonas");
-                    //ns.Flush();
-                    //Console.WriteLine(item);
-                    //i++;
-                }
 
+                //Works as a normal tcp connection 
+                //string message = Console.ReadLine();
+                //sw.WriteLine(message); 
 
-                //string serverAnswer = sr.ReadLine();
+                
+                var SendList = JsonConvert.SerializeObject(list);  //Serialize list
+                sw.WriteLine(SendList);                            //Sends list to slave
+                Console.WriteLine("Brugerlist er sendt");          //confirm
+
+                string message = sr.ReadLine();
+                Console.WriteLine(message);
 
             }
             Console.WriteLine("No more from server. Press Enter");

@@ -52,7 +52,6 @@ namespace Master.Util
             FileStream fs = new FileStream(filename, FileMode.Open, FileAccess.Read);
             using (StreamReader sr = new StreamReader(fs))
             {
-
                 while (!sr.EndOfStream)
                 {
                     String line = sr.ReadLine();
