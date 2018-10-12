@@ -22,7 +22,7 @@ namespace Master.Master_Server
         {
             //We reads all the password and username Pairs and saves them to a list<UserInfo>
             List<UserInfo> list = PasswordFileHandler.ReadPasswordFile("passwords.txt");
-            int chucnkSize = 10000;
+            int chucnkSize = 10000; //adjust after need 
 
             //Creating a TcpClient
             TcpClient clientSocket = new TcpClient("10.200.120.159", 1234);
@@ -52,6 +52,8 @@ namespace Master.Master_Server
                 sw.WriteLine(chucnkSize);
                 string confirmChunckSize = sr.ReadLine();
                 Console.WriteLine(confirmChunckSize);
+
+                Console.WriteLine("communication established");
             }
 
             //Start Cracking 

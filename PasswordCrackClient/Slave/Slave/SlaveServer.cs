@@ -23,6 +23,8 @@ namespace Slave
                 TcpClient connectionSocket = serverSocket.AcceptTcpClient();
                 Service service = new Service(connectionSocket);
                 Task.Factory.StartNew(() => service.DoIt());
+
+                //Start cracking method. 
             }
 
             serverSocket.Stop();
