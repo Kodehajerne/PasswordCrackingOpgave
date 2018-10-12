@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Master.Util;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
 
 namespace Master.Master_Server
 {
@@ -15,21 +16,21 @@ namespace Master.Master_Server
     {
         public void Start()
         {
-            //int counter = 0;   Måske en gode ide, så man kan se hvor mange man har connecet til?
-
             //We reads all the password and username Pairs and saves them to a list<UserInfo>
             List<UserInfo> list = PasswordFileHandler.ReadPasswordFile("passwords.txt");
+            BinaryFormatter binaryFormatter = new BinaryFormatter();
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(UserInfo));
 
-            //Take the list and turnes it into a byte[]
-            var binFormatter = new BinaryFormatter();
-            var mStream = new MemoryStream();
-            binFormatter.Serialize(mStream, list);
+            ////Take the list and turnes it into a byte[]
+            //var binFormatter = new BinaryFormatter();
+            //var mStream = new MemoryStream();
+            //binFormatter.Serialize(mStream, list);
 
-            //This gives you the byte array.
-            var SendListAsBytes = mStream.ToArray();
+            ////This gives you the byte array.
+            //var SendListAsBytes = mStream.ToArray();
 
 
-            TcpClient clientSocket = new TcpClient("10.200.123.60", 7777);
+            TcpClient clientSocket = new TcpClient("10.200.120.159", 1234);
             Console.WriteLine("Connection to slaves");
 
             Stream ns = clientSocket.GetStream();
@@ -37,10 +38,19 @@ namespace Master.Master_Server
             StreamWriter sw = new StreamWriter(ns);
             sw.AutoFlush = true;
 
-            while (true)
+            for (int i = 0; i < list.Count; i++)
             {
-                
-                sw.WriteLine(SendListAsBytes);
+                foreach (var item in list)
+                {
+                    //binaryFormatter.Serialize(ns, "jonas");
+                    string message = Console.ReadLine();
+                    //sw.WriteLine("Jonas");
+                    //ns.Flush();
+                    //Console.WriteLine(item);
+                    //i++;
+                }
+
+
                 //string serverAnswer = sr.ReadLine();
 
             }

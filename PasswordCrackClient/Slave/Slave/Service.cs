@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using Slave.Model;
+using System.Xml.Serialization;
 
 namespace Slave
 {
@@ -15,11 +17,16 @@ namespace Slave
     class Service
     {
         private TcpClient connectionSocket;
+        private List<UserInfo> list;
+        private UserInfo userInfo;
+        private BinaryFormatter binaryFormatter = new BinaryFormatter();
+        private XmlSerializer xmlSerializer = new XmlSerializer(typeof(UserInfo));
 
         public Service(TcpClient connectionSocket)
         {
             // TODO: Complete member initialization
             this.connectionSocket = connectionSocket;
+            
         }
 
         internal void DoIt()
@@ -32,11 +39,20 @@ namespace Slave
             string message = sr.ReadLine();
             while (message != null && message != "")
             {
-                foreach (var item in message)
-                {
-                    Console.WriteLine(item);
-                }
-                sw.WriteLine("ok");
+                Console.WriteLine("Client: " + message);
+                sw.WriteLine(message);
+
+                //userInfo = (UserInfo)binaryFormatter.Deserialize(ns);
+                //list.Add(userInfo);
+
+
+                //sw.WriteLine(message);
+
+                //foreach (var item in list)
+                //{
+                //    sw.WriteLine(item);
+                //}
+                //sw.WriteLine("ok");
             }
             ns.Close();
             connectionSocket.Close();

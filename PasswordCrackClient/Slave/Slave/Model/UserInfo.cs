@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Master.Model
+namespace Slave.Model
 {
-
     /// <summary>
     /// username + encrypted password.
     /// In the password file we store username + encrypted password.
@@ -22,7 +21,7 @@ namespace Master.Model
 
         public UserInfo()
         {
-
+                
         }
 
         public UserInfo(String username, String entryptedPasswordBase64)
@@ -46,3 +45,4 @@ namespace Master.Model
         }
     }
 }
+

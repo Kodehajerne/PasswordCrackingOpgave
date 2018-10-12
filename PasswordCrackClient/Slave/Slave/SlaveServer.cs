@@ -12,10 +12,9 @@ namespace Slave
     {
         static void Main(string[] args)
         {
-            IPAddress ip = IPAddress.Parse("10.200.123.60");
-            TcpListener serverSocket = new TcpListener(ip, 7777);
+            IPAddress ip = IPAddress.Parse("10.200.120.159");
+            TcpListener serverSocket = new TcpListener(ip, 1234);
 
-            //TcpListener serverSocket = new TcpListener(6789);
             serverSocket.Start();
 
 
