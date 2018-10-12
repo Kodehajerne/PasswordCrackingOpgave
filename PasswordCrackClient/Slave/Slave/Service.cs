@@ -8,6 +8,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Slave.Model;
 using System.Xml.Serialization;
+using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 
 namespace Slave
@@ -18,7 +19,7 @@ namespace Slave
     class Service
     {
         private TcpClient connectionSocket;
-        private List<UserInfo> list;
+        private List<UserInfo> listOfUserInfo;
         private UserInfo userInfo;
         private BinaryFormatter binaryFormatter = new BinaryFormatter();
         private XmlSerializer xmlSerializer = new XmlSerializer(typeof(UserInfo));
@@ -46,11 +47,23 @@ namespace Slave
                 //Console.ReadLine();
 
                 Console.WriteLine("Receiving data");
-                var respone = JsonConvert.SerializeObject(message);
-                Console.WriteLine(respone);
+                List<UserInfo> receivedDataString =  (List<UserInfo>) JsonConvert.DeserializeObject(message);
+                Console.WriteLine(receivedDataString);
+
+                // We split the string arrays on ":" dividing it: username : password.
+                //listOfUserInfo.Add(new UserInfo(receivedDataString.SelectToken("Username").ToString()
+                //    , receivedDataString.SelectToken("EncryptedPasswordBase64").ToString()));
+
+                foreach (var item in receivedDataString)
+                {
+                    Console.WriteLine(item);
+                }
 
                 //Sends back an confirmation
                 sw.WriteLine("ok");
+
+               
+
 
 
                 Console.ReadLine();

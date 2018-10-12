@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Master.Util;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
+using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 
 namespace Master.Master_Server
@@ -19,11 +20,8 @@ namespace Master.Master_Server
         {
             //We reads all the password and username Pairs and saves them to a list<UserInfo>
             List<UserInfo> list = PasswordFileHandler.ReadPasswordFile("passwords.txt");
-            BinaryFormatter binaryFormatter = new BinaryFormatter();
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(UserInfo));
 
-           
-
+            //Creating a TcpClient
             TcpClient clientSocket = new TcpClient("10.200.120.159", 1234);
             Console.WriteLine("Connection to slaves");
 
@@ -35,15 +33,17 @@ namespace Master.Master_Server
             for (int i = 0; i < 1; i++)
             {
 
-                //Works as a normal tcp connection 
+                ////Works as a normal tcp connection 
                 //string message = Console.ReadLine();
                 //sw.WriteLine(message); 
 
-                
-                var SendList = JsonConvert.SerializeObject(list);  //Serialize list
-                sw.WriteLine(SendList);                            //Sends list to slave
-                Console.WriteLine("Brugerlist er sendt");          //confirm
+                //Sends a hole list
+                var SendList = JsonConvert.SerializeObject(list);  
+                sw.WriteLine(SendList);                            
+                Console.WriteLine("Brugerlist er sendt");                
 
+
+                //Confirm message from slave)
                 string message = sr.ReadLine();
                 Console.WriteLine(message);
 
