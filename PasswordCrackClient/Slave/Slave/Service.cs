@@ -36,7 +36,7 @@ namespace Slave
             string message = sr.ReadLine();
             while (message != null && message != "")
             {
-                if (message == "Start")
+                if (message == "s")
                 {
                     Console.WriteLine("Cracking is started");
                     Cracking cracker = new Cracking();

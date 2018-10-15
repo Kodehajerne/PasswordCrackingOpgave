@@ -34,7 +34,7 @@ namespace Slave.CrackingMethods
             Stopwatch stopwatch = Stopwatch.StartNew();
 
             List<UserInfo> userInfos =
-                PasswordFileHandler.ReadPasswordFile("PasswordCreatedFile.txt");
+                PasswordFileHandler.ReadPasswordFile("passwords.txt");
             Console.WriteLine("passwd opeend");
 
             List<UserInfoClearText> result = new List<UserInfoClearText>();
