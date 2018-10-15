@@ -38,7 +38,7 @@ namespace Master.Master_Server
                 //Sends a hole list
                 var SendList = JsonConvert.SerializeObject(list);  
                 sw.WriteLine(SendList);                            
-                Console.WriteLine("Brugerlist er sendt");                
+                Console.WriteLine("Brugerlist er sendt");
 
                 //Confirm message from slaves
                 string message = sr.ReadLine();
@@ -58,8 +58,19 @@ namespace Master.Master_Server
             Console.WriteLine("Type 'Start' to crack");
             string commandStartCrack = Console.ReadLine(); ;
             sw.WriteLine(commandStartCrack);
-            
 
+            Console.WriteLine("--- Resultatet er kommet ---");
+            string result = sr.ReadLine();
+            Console.WriteLine(result);
+
+            IList<UserInfo> resivedResult = JsonConvert.DeserializeObject<List<UserInfo>>(result);
+
+            foreach (var item in resivedResult)
+            {
+                item.ToString();
+            }
+
+            Console.WriteLine("Done");
             Console.WriteLine("No more from server. Press Enter");
             Console.ReadLine();
 

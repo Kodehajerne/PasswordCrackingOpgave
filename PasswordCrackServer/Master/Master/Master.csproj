@@ -51,6 +51,7 @@
     <Compile Include="Master Server\MasterServer.cs" />
     <Compile Include="Master.cs" />
     <Compile Include="Model\UserInfo.cs" />
+    <Compile Include="Model\UserInfoClearText.cs" />
     <Compile Include="Util\PasswordFileHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

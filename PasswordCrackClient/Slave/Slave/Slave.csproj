@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CrackingMethods\Cracking.cs" />
+    <Compile Include="CrackingMethods\CrackingPart2.cs" />
     <Compile Include="Model\UserInfo.cs" />
     <Compile Include="Model\UserInfoClearText.cs" />
     <Compile Include="SlaveServer.cs" />
