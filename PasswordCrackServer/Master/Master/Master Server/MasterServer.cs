@@ -25,7 +25,7 @@ namespace Master.Master_Server
             int chucnkSize = 10000; //adjust after need 
 
             //Creating a TcpClient
-            TcpClient clientSocket = new TcpClient("10.200.120.159", 1234);
+            TcpClient clientSocket = new TcpClient("10.200.120.16", 1234);
             Console.WriteLine("Connection to slaves");
 
             Stream ns = clientSocket.GetStream();

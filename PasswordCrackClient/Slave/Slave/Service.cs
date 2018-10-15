@@ -1,23 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using Slave.Model;
+using Slave.Util;
 using Slave.CrackingMethods;
-using System.Xml.Serialization;
-using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace Slave
 {
     /// <summary>
     /// Service class controll all the thing related to comunication. 
     /// </summary>
-    class Service
+    public class Service
     {
         private TcpClient connectionSocket;
         private IList<UserInfo> _receivedDataString;
@@ -64,7 +60,20 @@ namespace Slave
             {
                 //Recieve data from Master
                 Console.WriteLine("Receiving data");
-                _receivedDataString = JsonConvert.DeserializeObject<IList<UserInfo>>(message);
+                _receivedDataString = JsonConvert.DeserializeObject<List<UserInfo>>(message);
+                foreach (var item in _receivedDataString)
+                {
+                    string[] arrayParts = _receivedDataString.Split(':');
+                    var usernames = arrayParts[0];
+                    var passwords = arrayParts[1];
+
+                    Console.WriteLine(usernames);
+                    Console.WriteLine(passwords);
+                }
+
+
+                //PasswordFileHandler.WritePasswordFile("PasswordCreatedFile");
+
                 //Showing data
                 foreach (var item in _receivedDataString)
                 {

@@ -21,7 +21,7 @@ namespace Slave.Model
 
         public UserInfo()
         {
-                
+            
         }
 
         public UserInfo(String username, String entryptedPasswordBase64)
