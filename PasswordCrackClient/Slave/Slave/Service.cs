@@ -70,7 +70,7 @@ namespace Slave
                 }
 
                 //Writes a passwordfile and saves it in the debug folder
-                PasswordFileHandler.WritePasswordFile("passwordtestfile", arrayOfName.ToArray(), arrayOfPassword.ToArray());
+                //PasswordFileHandler.WritePasswordFile("passwordtestfile", arrayOfName.ToArray(), arrayOfPassword.ToArray());
 
                 //Sends back an confirmation
                 sw.WriteLine("ok");
