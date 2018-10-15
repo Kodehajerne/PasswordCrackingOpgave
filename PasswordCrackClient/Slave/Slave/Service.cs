@@ -18,6 +18,8 @@ namespace Slave
         private TcpClient connectionSocket;
         private IList<UserInfo> _receivedDataString;
         int _confirmChunckSize;
+        private List<string> arrayOfName = new List<string>();  //Contains alle usernames 
+        private List<string> arrayOfPassword = new List<string>();
         public Service(TcpClient connectionSocket)
         {
             // TODO: Complete member initialization
@@ -61,24 +63,20 @@ namespace Slave
                 //Recieve data from Master
                 Console.WriteLine("Receiving data");
                 _receivedDataString = JsonConvert.DeserializeObject<List<UserInfo>>(message);
+               
                 foreach (var item in _receivedDataString)
                 {
-                    string[] arrayParts = _receivedDataString.Split(':');
-                    var usernames = arrayParts[0];
-                    var passwords = arrayParts[1];
-
-                    Console.WriteLine(usernames);
-                    Console.WriteLine(passwords);
+                    string[] arrayUSerAndPAss = item.ToString().Split(':');
+                    string name = arrayUSerAndPAss[0];
+                    string password = arrayUSerAndPAss[1];
+                    arrayOfName.Add(name);
+                    arrayOfPassword.Add(password);
                 }
 
+                //Writes a passwordfile and saves it in the debug folder
+                PasswordFileHandler.WritePasswordFile("PasswordCreatedFile", arrayOfName.ToArray(), arrayOfPassword.ToArray());
 
-                //PasswordFileHandler.WritePasswordFile("PasswordCreatedFile");
 
-                //Showing data
-                foreach (var item in _receivedDataString)
-                {
-                    Console.WriteLine(item);
-                }
 
                 //Sends back an confirmation
                 sw.WriteLine("ok");
