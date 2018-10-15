@@ -38,13 +38,9 @@ namespace Slave
             {
                 if (message == "Start")
                 {
-                    for (int i = 0; i <= _confirmChunckSize; i++)
-                    {
-
-                    }
+                    Console.WriteLine("Cracking is started");
                     Cracking cracker = new Cracking();
                     cracker.RunCracking();
-                    Console.WriteLine("Cracking is started");
                 }
                 else { throw new ArgumentException(); }
             }
@@ -74,21 +70,17 @@ namespace Slave
                 }
 
                 //Writes a passwordfile and saves it in the debug folder
-                PasswordFileHandler.WritePasswordFile("PasswordCreatedFile", arrayOfName.ToArray(), arrayOfPassword.ToArray());
-
-
+                //PasswordFileHandler.WritePasswordFile("PasswordCreatedFile", arrayOfName.ToArray(), arrayOfPassword.ToArray());
 
                 //Sends back an confirmation
                 sw.WriteLine("ok");
 
-                //Confirmes chunck size
-                _confirmChunckSize = Convert.ToInt32(sr.ReadLine());
-                sw.WriteLine($"chucnk size is set to: {_confirmChunckSize}");
 
-                foreach (var item in _receivedDataString)
-                {
-                    Console.WriteLine();
-                }
+                ////Confirmes chunck size
+                //_confirmChunckSize = Convert.ToInt32(sr.ReadLine());
+                //sw.WriteLine($"chucnk size is set to: {_confirmChunckSize}");
+
+                EnvokeCracking();
 
                 Console.ReadLine();
             }

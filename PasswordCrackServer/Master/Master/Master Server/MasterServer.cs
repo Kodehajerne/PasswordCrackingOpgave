@@ -35,10 +35,6 @@ namespace Master.Master_Server
 
             for (int i = 0; i < 1; i++)
             {
-                ////Works as a normal tcp connection 
-                //string message = Console.ReadLine();
-                //sw.WriteLine(message); 
-
                 //Sends a hole list
                 var SendList = JsonConvert.SerializeObject(list);  
                 sw.WriteLine(SendList);                            
@@ -48,19 +44,21 @@ namespace Master.Master_Server
                 string message = sr.ReadLine();
                 Console.WriteLine(message);
 
-                //sends chunck size to slaves.
-                sw.WriteLine(chucnkSize);
-                string confirmChunckSize = sr.ReadLine();
-                Console.WriteLine(confirmChunckSize);
+                ////sends chunck size to slaves.
+                //sw.WriteLine(chucnkSize);
+                //string confirmChunckSize = sr.ReadLine();
+                //Console.WriteLine(confirmChunckSize);
 
                 Console.WriteLine("communication established");
             }
+
 
             //Start Cracking 
             Console.WriteLine("-----------------------");
             Console.WriteLine("Type 'Start' to crack");
             string commandStartCrack = Console.ReadLine(); ;
             sw.WriteLine(commandStartCrack);
+            
 
             Console.WriteLine("No more from server. Press Enter");
             Console.ReadLine();
