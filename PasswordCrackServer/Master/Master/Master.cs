@@ -12,9 +12,10 @@ namespace Master
         static void Main(string[] args)
         {
             MasterServer master = new MasterServer();
-            //master.StartConnection("10.200.120.16");
-            master.StartConnection();
-            //Task.Factory.StartNew(() => master.StartConnection("10.200.120.16"));
+            //master.StartConnection("172.20.10.7", 6789);
+            //master.StartConnection("172.20.10.6", 7777);
+            Task.Factory.StartNew(() => master.StartConnection("172.20.10.6", 7777));
+            Task.Factory.StartNew(() => master.StartConnection("172.20.10.7", 6789));
 
 
             Console.ReadLine();
