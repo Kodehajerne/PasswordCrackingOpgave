@@ -133,18 +133,22 @@ namespace Slave
 
             String possiblePassword = dictionaryEntry;
             IEnumerable<UserInfoClearText> partialResult = CheckSingleWord(userInfos, possiblePassword);
+            Console.WriteLine("Normale words");
             result.AddRange(partialResult);
 
             String possiblePasswordUpperCase = dictionaryEntry.ToUpper();
             IEnumerable<UserInfoClearText> partialResultUpperCase = CheckSingleWord(userInfos, possiblePasswordUpperCase);
+            Console.WriteLine("Uppercase check");
             result.AddRange(partialResultUpperCase);
 
             String possiblePasswordCapitalized = StringUtilities.Capitalize(dictionaryEntry);
             IEnumerable<UserInfoClearText> partialResultCapitalized = CheckSingleWord(userInfos, possiblePasswordCapitalized);
+            Console.WriteLine("Capitalized check");
             result.AddRange(partialResultCapitalized);
 
             String possiblePasswordReverse = StringUtilities.Reverse(dictionaryEntry);
             IEnumerable<UserInfoClearText> partialResultReverse = CheckSingleWord(userInfos, possiblePasswordReverse);
+            Console.WriteLine("Reverse check");
             result.AddRange(partialResultReverse);
 
             for (int i = 0; i < 100; i++)

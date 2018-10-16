@@ -23,10 +23,10 @@ namespace Master.Master_Server
             //We reads all the password and username Pairs and saves them to a list<UserInfo>
             List<UserInfo> list = PasswordFileHandler.ReadPasswordFile("passwords.txt");
             int chucnkSize = 10000; //adjust after need 
-
+            Console.WriteLine("starting connectiong");
             //Creating a TcpClient
-            TcpClient clientSocket = new TcpClient("10.200.120.16", 1234);
-            Console.WriteLine("Connection to slaves");
+            TcpClient clientSocket = new TcpClient("192.168.43.238", 6789);
+            Console.WriteLine("Connection to slave");
 
             Stream ns = clientSocket.GetStream();
             StreamReader sr = new StreamReader(ns);

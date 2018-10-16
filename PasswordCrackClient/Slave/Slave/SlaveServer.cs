@@ -12,7 +12,7 @@ namespace Slave
     {
         static void Main(string[] args)
         {
-            IPAddress ip = IPAddress.Parse("10.200.120.16");
+            IPAddress ip = IPAddress.Parse("192.168.43.238");
             TcpListener serverSocket = new TcpListener(ip, 1234);
 
             serverSocket.Start();
@@ -21,8 +21,9 @@ namespace Slave
             while (true)
             {
                 TcpClient connectionSocket = serverSocket.AcceptTcpClient();
+                Console.WriteLine("Server activated now");
                 Service service = new Service(connectionSocket);
-                Task.Factory.StartNew(() => service.DoIt());
+                service.DoIt();
 
 
                 //Start cracking method. 
