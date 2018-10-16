@@ -48,8 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\ThreadController.cs" />
     <Compile Include="Master Server\MasterServer.cs" />
     <Compile Include="Master.cs" />
+    <Compile Include="Model\SlaveInfo.cs" />
     <Compile Include="Model\UserInfo.cs" />
     <Compile Include="Model\UserInfoClearText.cs" />
     <Compile Include="Util\PasswordFileHandler.cs" />
