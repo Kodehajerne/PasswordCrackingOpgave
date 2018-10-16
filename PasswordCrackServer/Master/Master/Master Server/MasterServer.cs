@@ -45,9 +45,9 @@ namespace Master.Master_Server
                 Console.WriteLine(message);
 
                 ////sends chunck size to slaves.
-                //sw.WriteLine(chucnkSize);
-                //string confirmChunckSize = sr.ReadLine();
-                //Console.WriteLine(confirmChunckSize);
+                sw.WriteLine(chucnkSize);
+                string confirmChunckSize = sr.ReadLine();
+                Console.WriteLine(confirmChunckSize);
 
                 Console.WriteLine("communication established");
             }
@@ -59,7 +59,7 @@ namespace Master.Master_Server
             string commandStartCrack = Console.ReadLine(); ;
             sw.WriteLine(commandStartCrack);
 
-            Console.WriteLine("--- Resultatet er kommet ---");
+            Console.WriteLine("--- Cracking is running, please wait ---");
             string result = sr.ReadLine();
             Console.WriteLine(result);
 

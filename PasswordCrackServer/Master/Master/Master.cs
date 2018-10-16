@@ -3,6 +3,7 @@ using Master.Model;
 using Master.Util;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Master
 {
@@ -12,6 +13,8 @@ namespace Master
         {
             MasterServer master = new MasterServer();
             master.StartConnection();
+            //Task.Factory.StartNew(() => master.StartConnection());
+            
 
             Console.ReadLine();
         }

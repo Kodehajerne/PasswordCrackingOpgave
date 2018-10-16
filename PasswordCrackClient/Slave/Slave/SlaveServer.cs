@@ -24,6 +24,7 @@ namespace Slave
                 Service service = new Service(connectionSocket);
                 Task.Factory.StartNew(() => service.DoIt());
 
+
                 //Start cracking method. 
             }
 

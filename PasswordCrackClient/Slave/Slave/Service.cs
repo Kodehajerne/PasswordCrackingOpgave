@@ -19,7 +19,7 @@ namespace Slave
     {
         private TcpClient connectionSocket;
         private IList<UserInfo> _receivedDataString;
-        //int _confirmChunckSize;
+        private int _confirmChunckSize;
         private List<string> arrayOfName = new List<string>();  //Contains alle usernames 
         private List<string> arrayOfPassword = new List<string>();
         private static readonly HashAlgorithm _messageDigest = new SHA1CryptoServiceProvider();
@@ -40,10 +40,12 @@ namespace Slave
             string message = sr.ReadLine();
             while (message != null && message != "")
             {
-                if (message == "s")
+                if (message == "start" || message == "Start" || message == "s" || message == "S")
                 {
-                    Console.WriteLine("Cracking is started");
-                    Cracking cracker = new Cracking();
+                    //Console.WriteLine("Cracking is started");
+                    //Cracking cracker = new Cracking();
+
+                    //Task.Factory.StartNew(() => { cracker.RunCracking(); });
 
 
                     Stopwatch stopwatch = Stopwatch.StartNew();
@@ -104,8 +106,8 @@ namespace Slave
 
 
                 ////Confirmes chunck size
-                //_confirmChunckSize = Convert.ToInt32(sr.ReadLine());
-                //sw.WriteLine($"chucnk size is set to: {_confirmChunckSize}");
+                _confirmChunckSize = Convert.ToInt32(sr.ReadLine());
+                sw.WriteLine($"chucnk size is set to: {_confirmChunckSize}");
 
                 EnvokeCracking();
 
