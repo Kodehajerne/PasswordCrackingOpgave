@@ -18,14 +18,14 @@ namespace Master.Master_Server
     {
 
 
-        public void StartConnection()
+        public async void StartConnection(String ip, int port)
         {
             //We reads all the password and username Pairs and saves them to a list<UserInfo>
             List<UserInfo> list = PasswordFileHandler.ReadPasswordFile("passwords.txt");
             int chucnkSize = 10000; //adjust after need 
             Console.WriteLine("starting connectiong");
             //Creating a TcpClient
-            TcpClient clientSocket = new TcpClient("192.168.43.238", 6789);
+            TcpClient clientSocket = new TcpClient(ip, port);
             Console.WriteLine("Connection to slave");
 
             Stream ns = clientSocket.GetStream();
@@ -36,8 +36,8 @@ namespace Master.Master_Server
             for (int i = 0; i < 1; i++)
             {
                 //Sends a hole list
-                var SendList = JsonConvert.SerializeObject(list);  
-                sw.WriteLine(SendList);                            
+                var SendList = JsonConvert.SerializeObject(list);
+                sw.WriteLine(SendList);
                 Console.WriteLine("Brugerlist er sendt");
 
                 //Confirm message from slaves
@@ -50,31 +50,36 @@ namespace Master.Master_Server
                 Console.WriteLine(confirmChunckSize);
 
                 Console.WriteLine("communication established");
+
+                await StartCracking();
             }
 
 
-            //Start Cracking 
-            Console.WriteLine("-----------------------");
-            Console.WriteLine("Type 'Start' to crack");
-            string commandStartCrack = Console.ReadLine(); ;
-            sw.WriteLine(commandStartCrack);
+            async Task StartCracking() {
 
-            Console.WriteLine("--- Cracking is running, please wait ---");
-            string result = sr.ReadLine();
-            Console.WriteLine(result);
+                //Start Cracking 
+                Console.WriteLine("-----------------------");
+                Console.WriteLine("Type 'Start' to crack");
+                string commandStartCrack = Console.ReadLine(); ;
+                sw.WriteLine(commandStartCrack);
 
-            IList<UserInfo> resivedResult = JsonConvert.DeserializeObject<List<UserInfo>>(result);
+                Console.WriteLine("--- Cracking is running, please wait ---");
+                string result = sr.ReadLine();
+                Console.WriteLine(result);
 
-            foreach (var item in resivedResult)
-            {
-                item.ToString();
+                IList<UserInfo> resivedResult = JsonConvert.DeserializeObject<List<UserInfo>>(result);
+
+                foreach (var item in resivedResult)
+                {
+                    item.ToString();
+                }
+
+                Console.WriteLine("Done");
+                Console.WriteLine("No more from server. Press Enter");
+                Console.ReadLine();
+
+                ns.Close();
             }
-
-            Console.WriteLine("Done");
-            Console.WriteLine("No more from server. Press Enter");
-            Console.ReadLine();
-
-            ns.Close();
         }
     }
 }

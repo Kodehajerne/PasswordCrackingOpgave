@@ -8,7 +8,7 @@ using System.Security.Cryptography;
 
 namespace PasswordCrackerCentralized
 {
-    public class Cracking
+    public async Task class Cracking
     {
         /// <summary>
         /// The algorithm used for encryption.

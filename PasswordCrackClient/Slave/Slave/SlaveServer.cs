@@ -23,10 +23,9 @@ namespace Slave
                 TcpClient connectionSocket = serverSocket.AcceptTcpClient();
                 Console.WriteLine("Server activated now");
                 Service service = new Service(connectionSocket);
-                service.DoIt();
 
-
-                //Start cracking method. 
+                Task.Factory.StartNew(() => service.DoIt());
+                
             }
 
             serverSocket.Stop();
