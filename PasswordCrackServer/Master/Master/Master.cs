@@ -13,23 +13,25 @@ namespace Master
     {
         static void Main(string[] args)
         {
-            List<SlaveInfo> slaveInfos = new List<SlaveInfo>
-            { new SlaveInfo("Ian", "192.168.1.15", 1234),
-                new SlaveInfo("Christoffer", "100.200.30.2", 7777)};
+            //List<SlaveInfo> slaveInfos = new List<SlaveInfo>
+            //{ new SlaveInfo("Ian", "192.168.1.15", 1234),
+            //    new SlaveInfo("Christoffer", "100.200.30.2", 7777)};
 
-            foreach (var item in slaveInfos)
-            {
-                MasterServer master = new MasterServer();
-                Task.Factory.StartNew(() => master.StartConnection(item.getIp, item.getPort));
-            }
-            Console.ReadLine();
+            //foreach (var item in slaveInfos)
+            //{
+            //    MasterServer master = new MasterServer();
+            //    Task.Factory.StartNew(() => master.StartConnection(item.getIp, item.getPort));
+            //}
+            //Console.ReadLine();
 
             //Hvis ovenstående ikke virker, prøv at lave flere Mastere, da der er protocollen. Grunden til at 
             //Forbindelsen blev tvangs afbrudt er nok fordi vi kun brugte en?! prøv det!  se eks. OBS! det skal tilrettes. 
-            //MasterServer master = new MasterServer();
-            //MasterServer master1 = new MasterServer();
-            //Task.Factory.StartNew(() => master.StartConnection("172.20.10.6", 1111));
-            //Task.Factory.StartNew(() => master1.StartConnection("172.20.10.7", 7777));
+            MasterServer master = new MasterServer();
+           // MasterServer master1 = new MasterServer();
+             master.StartConnection("192.168.1.15", 1234);
+            //Task.Factory.StartNew(() => master1.StartConnection("192.168.1.15", 4321));
+
+            Console.ReadLine();
 
 
             //MasterServer master = new MasterServer();
