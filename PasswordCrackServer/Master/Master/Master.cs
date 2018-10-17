@@ -27,9 +27,11 @@ namespace Master
             //Hvis ovenstående ikke virker, prøv at lave flere Mastere, da der er protocollen. Grunden til at 
             //Forbindelsen blev tvangs afbrudt er nok fordi vi kun brugte en?! prøv det!  se eks. OBS! det skal tilrettes. 
             MasterServer master = new MasterServer();
-           // MasterServer master1 = new MasterServer();
-             master.StartConnection("192.168.1.15", 1234);
-            //Task.Factory.StartNew(() => master1.StartConnection("192.168.1.15", 4321));
+            MasterServer master1 = new MasterServer();
+
+            Task.Factory.StartNew(() => master.StartConnection("172.20.10.2", 1234));
+            Thread.Sleep(5000);
+            Task.Factory.StartNew(() => master.StartConnection("172.20.10.6", 4321));
 
             Console.ReadLine();
 
